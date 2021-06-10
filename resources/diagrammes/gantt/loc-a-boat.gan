@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Loc-a-Boat" company="" webLink="http://" view-date="2021-06-06" view-index="0" gantt-divider-location="450" resource-divider-location="300" version="3.1.3102" locale="en_US">
+    <description/>
+    <view zooming-state="default:6" id="gantt-chart">
+        <field id="tpd3" name="Name" width="221" order="0"/>
+        <field id="tpd4" name="Begin date" width="118" order="1"/>
+        <field id="tpd5" name="End date" width="107" order="2"/>
+        <timeline><![CDATA[10,2,11,12,0]]></timeline>
+        <option id="color.recent"><![CDATA[#ff66ff #ff3333]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Starter" color="#ff3333" meeting="true" start="2021-05-27" duration="0" complete="100" thirdDate="2021-06-08" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Pitch fait par Malek pour expliquer le projet]]></notes>
+            <depend id="16" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="16" name="Recherche idées" color="#8cb6ce" meeting="false" start="2021-05-27" duration="8" complete="100" thirdDate="2021-05-23" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Recherche d'idées de sujets.]]></notes>
+            <depend id="21" type="2" difference="0" hardness="Strong"/>
+            <depend id="37" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="21" name="Rédaction du cahier des charges" color="#8cb6ce" meeting="false" start="2021-06-04" duration="20" complete="37" thirdDate="2021-05-23" thirdDate-constraint="0" webLink="https%3A%2F%2Fwww.techno-science.net%2Fdefinition%2F690.html" expand="true">
+            <notes><![CDATA[Présentation du projet
+Description du livrable
+Prestations attendues]]></notes>
+            <depend id="7" type="2" difference="0" hardness="Rubber"/>
+            <depend id="87" type="2" difference="0" hardness="Strong"/>
+            <depend id="90" type="2" difference="0" hardness="Strong"/>
+            <task id="37" name="Définition du périmètre du projet" color="#8cb6ce" meeting="false" start="2021-06-04" duration="1" complete="100" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Début du cahier des charges, nous mettons au point les choses à réaliser et les limites du projet]]></notes>
+                <depend id="44" type="2" difference="0" hardness="Strong"/>
+                <depend id="54" type="2" difference="0" hardness="Strong"/>
+                <depend id="72" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="44" name="Rédaction UML" color="#8cb6ce" meeting="false" start="2021-06-05" duration="14" complete="25" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Mise en place de deux UML. Il faut réfléchir à l'UML relationnelle (Base de données) et l'UML fonctionnelle (Site WEB).]]></notes>
+                <depend id="67" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="54" name="Définition architecture technique" color="#8cb6ce" meeting="false" start="2021-06-05" duration="7" complete="50" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Choix des technologies utilisées pour mener à bien ce projet en fonction des resources disponibles]]></notes>
+            </task>
+            <task id="67" name="Définition points clés fonctionnels" color="#8cb6ce" meeting="false" start="2021-06-19" duration="5" complete="25" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Établissement des points fonctionnels à implémenter dans le livrable]]></notes>
+            </task>
+            <task id="72" name="Rédaction diagramme d'action" color="#8cb6ce" meeting="false" start="2021-06-05" duration="8" complete="50" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Rédaction d'un diagramme d'action pour mieux visualiser les interaction entre les différents modules et idéalement poser les limites de l'interaction admin / client de l'application]]></notes>
+            </task>
+        </task>
+        <task id="2" name="Point 1" color="#ff3333" meeting="true" start="2021-06-10" duration="0" complete="0" thirdDate="2021-06-08" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Point avec les formateurs sur le projet]]></notes>
+        </task>
+        <task id="7" name="Rendu Cahier des charges" color="#ff3333" meeting="true" start="2021-06-24" duration="0" complete="0" thirdDate="2021-05-24" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Le cahier des charges doit être complet et rendu]]></notes>
+        </task>
+        <task id="87" name="Réalisation du projet" color="#8cb6ce" meeting="false" start="2021-06-24" duration="67" complete="0" thirdDate="2021-05-23" thirdDate-constraint="0" expand="true">
+            <depend id="12" type="2" difference="0" hardness="Rubber"/>
+            <task id="90" name="Paramétrage" color="#ff66ff" meeting="false" start="2021-06-24" duration="1" complete="0" thirdDate="2021-06-17" thirdDate-constraint="0" priority="2" expand="true">
+                <notes><![CDATA[Paramétrage des frameworks / architectures utilisées
+Paramétrage CI / CD
+Paramétrage serveur(s)]]></notes>
+                <depend id="98" type="2" difference="0" hardness="Strong"/>
+                <depend id="102" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="98" name="Site Web" color="#ff66ff" meeting="false" start="2021-06-25" duration="66" complete="0" thirdDate="2021-06-17" thirdDate-constraint="0" expand="true"/>
+            <task id="102" name="Intégration IoT / Big Data" color="#ff66ff" meeting="false" start="2021-06-25" duration="66" complete="0" thirdDate="2021-06-17" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="10" name="Point 2" color="#ff3333" meeting="true" start="2021-07-08" duration="0" complete="0" thirdDate="2021-06-13" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[2e point sur le projet. Idéalement on devrait avoir bien avancé sur la partie interaction client (Web)]]></notes>
+        </task>
+        <task id="11" name="Point 3" color="#ff3333" meeting="true" start="2021-08-26" duration="0" complete="0" thirdDate="2021-06-13" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[3e et dernier point. À ce stade, le site doit être au moins présentable et/ou fini (+/- quelques bugs). La partie IoT doit être aussi finie pour commencer à réfléchir sur le contenu de la soutenance]]></notes>
+            <depend id="123" type="2" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="123" name="Réalisation support soutenance" color="#8cb6ce" meeting="false" start="2021-08-29" duration="4" complete="0" thirdDate="2021-05-23" thirdDate-constraint="0" expand="true">
+            <depend id="12" type="2" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="12" name="Soutenance" color="#ff3333" meeting="true" start="2021-09-02" duration="0" complete="0" thirdDate="2021-06-13" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Rendu du projet et soutenance]]></notes>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Anass" function="Default:1" contacts="anass.lahnin@estiam.com" phone=""/>
+        <resource id="2" name="Amer" function="SoftwareDevelopment:2" contacts="amer.cherni@estiam.com" phone=""/>
+        <resource id="1" name="Anis" function="SoftwareDevelopment:2" contacts="anis.bencheikh@estiam.com" phone=""/>
+        <resource id="3" name="Charaf" function="SoftwareDevelopment:2" contacts="charaf.maimouni@estiam.com" phone=""/>
+        <resource id="4" name="Matthieu" function="SoftwareDevelopment:2" contacts="matthieu.damasio@estiam.com" phone=""/>
+        <resource id="5" name="Salaheddine" function="SoftwareDevelopment:2" contacts="salaheddine.habibeche@estiam.com" phone=""/>
+        <resource id="6" name="Siong" function="SoftwareDevelopment:2" contacts="siong.tcha@estiam.com" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="16" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="37" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="44" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="54" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="67" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="90" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="102" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="123" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="16" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="72" resource-id="2" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="98" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="72" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="102" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="67" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="102" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="4" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="4" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="44" resource-id="4" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="98" resource-id="4" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="4" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="44" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="98" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="6" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="6" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="44" resource-id="6" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="102" resource-id="6" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="6" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
