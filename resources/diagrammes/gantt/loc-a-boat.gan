@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Loc-a-Boat" company="" webLink="http://" view-date="2021-06-06" view-index="0" gantt-divider-location="450" resource-divider-location="300" version="3.1.3102" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Loc-a-Boat" company="" webLink="http://" view-date="2021-05-23" view-index="0" gantt-divider-location="461" resource-divider-location="300" version="3.1.3102" locale="en_US">
     <description/>
     <view zooming-state="default:6" id="gantt-chart">
-        <field id="tpd3" name="Name" width="221" order="0"/>
-        <field id="tpd4" name="Begin date" width="118" order="1"/>
-        <field id="tpd5" name="End date" width="107" order="2"/>
-        <timeline><![CDATA[10,2,11,12,0]]></timeline>
+        <field id="tpd3" name="Name" width="291" order="0"/>
+        <field id="tpd4" name="Begin date" width="71" order="1"/>
+        <field id="tpd5" name="End date" width="95" order="2"/>
+        <timeline><![CDATA[11,10,0,2,12]]></timeline>
         <option id="color.recent"><![CDATA[#ff66ff #ff3333]]></option>
     </view>
     <view id="resource-table">
@@ -44,7 +44,7 @@
             <depend id="21" type="2" difference="0" hardness="Strong"/>
             <depend id="37" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="21" name="Rédaction du cahier des charges" color="#8cb6ce" meeting="false" start="2021-06-04" duration="20" complete="37" thirdDate="2021-05-23" thirdDate-constraint="0" webLink="https%3A%2F%2Fwww.techno-science.net%2Fdefinition%2F690.html" expand="true">
+        <task id="21" name="Rédaction du cahier des charges" color="#8cb6ce" meeting="false" start="2021-06-04" duration="20" complete="80" thirdDate="2021-05-23" thirdDate-constraint="0" webLink="https%3A%2F%2Fwww.techno-science.net%2Fdefinition%2F690.html" expand="true">
             <notes><![CDATA[Présentation du projet
 Description du livrable
 Prestations attendues]]></notes>
@@ -57,17 +57,17 @@ Prestations attendues]]></notes>
                 <depend id="54" type="2" difference="0" hardness="Strong"/>
                 <depend id="72" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="44" name="Rédaction UML" color="#8cb6ce" meeting="false" start="2021-06-05" duration="14" complete="25" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+            <task id="44" name="Rédaction UML" color="#8cb6ce" meeting="false" start="2021-06-05" duration="14" complete="50" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Mise en place de deux UML. Il faut réfléchir à l'UML relationnelle (Base de données) et l'UML fonctionnelle (Site WEB).]]></notes>
                 <depend id="67" type="2" difference="0" hardness="Rubber"/>
             </task>
-            <task id="54" name="Définition architecture technique" color="#8cb6ce" meeting="false" start="2021-06-05" duration="7" complete="50" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+            <task id="54" name="Définition architecture technique" color="#8cb6ce" meeting="false" start="2021-06-05" duration="7" complete="100" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Choix des technologies utilisées pour mener à bien ce projet en fonction des resources disponibles]]></notes>
             </task>
-            <task id="67" name="Définition points clés fonctionnels" color="#8cb6ce" meeting="false" start="2021-06-19" duration="5" complete="25" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+            <task id="67" name="Définition points clés fonctionnels" color="#8cb6ce" meeting="false" start="2021-06-19" duration="5" complete="100" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Établissement des points fonctionnels à implémenter dans le livrable]]></notes>
             </task>
-            <task id="72" name="Rédaction diagramme d'action" color="#8cb6ce" meeting="false" start="2021-06-05" duration="8" complete="50" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
+            <task id="72" name="Rédaction diagramme d'action" color="#8cb6ce" meeting="false" start="2021-06-05" duration="8" complete="100" thirdDate="2021-06-04" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Rédaction d'un diagramme d'action pour mieux visualiser les interaction entre les différents modules et idéalement poser les limites de l'interaction admin / client de l'application]]></notes>
             </task>
         </task>
