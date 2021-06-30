@@ -28,7 +28,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "node_modules/primeng/resources/themes/vela-blue/theme.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/styles.sass",
+              "node_modules/primeflex/primeflex.css"
             ],
             "scripts": []
           },
@@ -91,7 +95,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "node_modules/primeng/resources/themes/vela-blue/theme.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/styles.sass",
+              "node_modules/primeflex/primeflex.css"
             ],
             "scripts": []
           }
@@ -120,6 +128,10 @@
               "devServerTarget": "loc-a-boat:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

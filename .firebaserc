@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "loc-a-boat": {
+      "hosting": {
+        "loc-a-boat": [
+          "loc-a-boat"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "loc-a-boat"
+  }
+}
