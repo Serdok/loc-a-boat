@@ -115,9 +115,14 @@
       "options": [
         "check-branch",
         "check-decl",
+        "check-module",
         "check-operator",
+        "check-postbrace",
+        "check-preblock",
+        "check-rest-spread",
         "check-separator",
         "check-type",
+        "check-type-operator",
         "check-typecast"
       ]
     },

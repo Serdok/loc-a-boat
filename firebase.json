@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/loc-a-boat",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
