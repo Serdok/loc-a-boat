@@ -1,0 +1,15 @@
+<p-card *ngIf="tenant$ | async as tenant" header="Your profile" subheader="View your profile">
+  <ng-template pTemplate="content">
+    <div>
+      <h3>Personal Information</h3>
+      <div class="pb-2"><strong>Name:</strong> {{tenant.firstname | titlecase}} {{ tenant.lastname | titlecase}}</div>
+      <div class="pb-2"><strong>E-Mail:</strong> {{tenant.email}}</div>
+      <div *ngIf="tenant.hasPermit">You have a boat permit.</div>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <div class="pb-2"><strong>E-Mail:</strong> {{tenant.email}}</div>
+      <div><strong>Phone number:</strong> {{tenant.phone}}</div>
+    </div>
+  </ng-template>
+</p-card>

@@ -1,0 +1,55 @@
+<ng-form *ngIf="tenant$ | async as tenant" appValidatePassword>
+  <p-card header="Your profile" subheader="Edit your profile">
+    <ng-template pTemplate="content">
+      <!-- E-Mail -->
+      <div class="field py-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+          <span class="p-float-label">
+          <input pInputText type="email" id="tenant-input-email" disabled>
+          <label for="tenant-input-email">E-Mail</label>
+        </span>
+        </div>
+      </div>
+
+      <!-- Username (First name and last name) -->
+      <div class="field pb-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <span class="p-float-label">
+          <input pInputText type="text" id="tenant-input-firstname" required>
+          <label for="tenant-input-firstname">First name</label>
+        </span>
+          <span class="p-float-label">
+          <input pInputText type="text" id="tenant-input-lastname" required>
+          <label for="tenant-input-lastname">Last name</label>
+        </span>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="field pb-4">
+
+      </div>
+
+      <!-- Security -->
+      <div class="field pb-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+          <span class="p-float-label">
+            <p-password id="tenant-input-password" toggleMask="true"></p-password>
+            <label for="tenant-input-password">Password</label>
+          </span>
+
+          <span class="p-float-label">
+            <p-password id="tenant-input-password-confirm" toggleMask="true"></p-password>
+            <label for="tenant-input-password-confirm">Confirm password</label>
+          </span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button type="submit" icon="pi pi-save" iconPos="left"></p-button>
+    </ng-template>
+  </p-card>
+</ng-form>
