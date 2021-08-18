@@ -5,8 +5,9 @@ import { environment } from '../environments/environment';
 import { FirstPageComponent } from './components/first-page/first-page.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
-import { AngularFireAuthGuard, canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const redirectAnonymousToFirstPage = () => redirectUnauthorizedTo(['first-page']);
 const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['landing-page']);
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
   {
     path: 'tenant', loadChildren: () => import('./tenant/tenant.module').then(module => module.TenantModule),
-    canLoad: [AngularFireAuthGuard], data: {authGuardPipe: redirectAnonymousToFirstPage}
+    canLoad: [AuthGuard], ...canActivate(redirectAnonymousToFirstPage)
   },
   {path: '', redirectTo: '/first-page', pathMatch: 'full'},
 ];

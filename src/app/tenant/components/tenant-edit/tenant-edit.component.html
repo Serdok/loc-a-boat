@@ -102,10 +102,10 @@
             <div class="field is-expanded">
               <div class="field has-addons">
                 <p class="control">
-                  <button class="button is-static">+{{code}}</button>
+                  <button class="button is-static">+33</button>
                 </p>
                 <p class="control is-expanded">
-                  <input class="input" type="tel" [(ngModel)]="phoneNumber" formControlName="phone">
+                  <input class="input" type="tel" [(ngModel)]="tenant.phone" formControlName="phone">
                 </p>
               </div>
               <p *ngIf="phone.errors?.required">Phone number is required.</p>

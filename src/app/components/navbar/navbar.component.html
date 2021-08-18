@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <div class="navbar-item">
-      <a class="link has-text-link" routerLink="/landing-page">Loc-A-Boat</a>
+      <a class="link" routerLink="/landing-page">Loc-A-Boat</a>
     </div>
 
     <button role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
@@ -12,7 +12,18 @@
   </div>
 
   <div class="navbar-menu" id="mainNavbar">
-    <div class="navbar-start"></div>
+    <div class="navbar-start">
+      <div class="navbar-item">
+        <a class="link has-text-link" routerLink="/tenant">Rent a boat</a>
+      </div>
+      <div class="navbar-item">
+        <a class="link has-text-link" routerLink="/stations">See all stations</a>
+      </div>
+      <div class="navbar-item">
+        <a class="link has-text-link" routerLink="/owner">Rent your boat</a>
+      </div>
+    </div>
+
     <div class="navbar-end" *ngIf="user$ | async as user; else logIn">
       <div class="navbar-item">Hello {{ user.displayName }}!</div>
       <div class="navbar-item">

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TenantService } from '../../services/tenant.service';
 import { Observable } from 'rxjs';
 import { Tenant } from '../../interfaces/tenant';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { parsePhoneNumber, PhoneNumber } from 'libphonenumber-js';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../../directives/password-match-validator.directive';
+import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase';
+import User = firebase.User;
 
 @Component({
   selector: 'app-tenant-edit',
@@ -15,26 +17,20 @@ import { passwordMatchValidator } from '../../directives/password-match-validato
 })
 export class TenantEditComponent implements OnInit {
   tenant$: Observable<Tenant> = null;
-  phoneNumber: string = null;
-  code: string = null;
+  id: string = null;
   group: FormGroup = null;
 
-  constructor(private router: Router, private route: ActivatedRoute, private tenantService: TenantService, private fb: FormBuilder) {
+  constructor(private router: Router, private tenantService: TenantService, private fb: FormBuilder, private auth: AngularFireAuth) {
   }
 
   ngOnInit(): void {
-    this.tenant$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.tenantService.getTenant(params.get('id'))),
+    this.tenant$ = this.auth.user.pipe(
+      switchMap((user: User) => this.tenantService.getTenant(user.email)),
       map((tenant: Tenant) => {
         // Invalidate current password
         tenant.password = '';
+        this.id = tenant.id;
         return tenant;
-      }),
-      tap((tenant: Tenant) => {
-        // Get national phone
-        const nationalPhone: PhoneNumber = parsePhoneNumber(tenant.phone);
-        this.phoneNumber = nationalPhone.formatNational();
-        this.code = nationalPhone.countryCallingCode.toString();
       }),
       tap((tenant: Tenant) => {
         // Setup form controls
@@ -42,7 +38,7 @@ export class TenantEditComponent implements OnInit {
           email: [tenant.email, Validators.nullValidator],
           firstname: [tenant.firstname, Validators.required],
           lastname: [tenant.lastname, Validators.required],
-          phone: [this.phoneNumber, Validators.required],
+          phone: [tenant.phone, Validators.required],
           hasPermit: [tenant.hasPermit, Validators.nullValidator],
           password: [null, Validators.compose([
             Validators.required,
@@ -59,6 +55,7 @@ export class TenantEditComponent implements OnInit {
 
   onSubmit(): void {
     console.log('saving');
+    this.tenantService.updateTenant({id: this.id, ...this.group.value});
   }
 
   get firstname(): AbstractControl {
