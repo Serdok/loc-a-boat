@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
   {path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
   {path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
-  {path: '', redirectTo: '/first-page', pathMatch: 'full', ...canActivate(redirectLoggedInToLandingPage)},
+  {path: '', redirectTo: '/first-page', pathMatch: 'full'},
 ];
 
 @NgModule({
