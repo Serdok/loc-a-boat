@@ -1,0 +1,34 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      <a class="link has-text-link" routerLink="/landing-page">Loc-A-Boat</a>
+    </div>
+
+    <button role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+      <span aria-hidden="false"></span>
+      <span aria-hidden="false"></span>
+      <span aria-hidden="false"></span>
+    </button>
+  </div>
+
+  <div class="navbar-menu" id="mainNavbar">
+    <div class="navbar-start"></div>
+    <div class="navbar-end" *ngIf="user$ | async as user; else logIn">
+      <div class="navbar-item">Hello {{ user.displayName }}!</div>
+      <div class="navbar-item">
+        <button class="button is-rounded is-primary" (click)="logOut()">Log Out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<ng-template #logIn>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <button class="button is-rounded is-inverted" routerLink="/signup">Join us</button>
+        <button class="button is-rounded is-primary" routerLink="/login">Log in</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

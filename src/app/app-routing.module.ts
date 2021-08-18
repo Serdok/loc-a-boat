@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// Import all the components for which navigation service has to be activated 
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthGuard } from "./shared/guard/auth.guard";
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
+import { FirstPageComponent } from './components/first-page/first-page.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { environment } from '../environments/environment';
+
+const redirectAnonymousToFirstPage = () => redirectUnauthorizedTo(['first-page']);
+const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['landing-page']);
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'register-user', component: SignUpComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent }
+  {path: 'first-page', component: FirstPageComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
+  {path: '', redirectTo: '/first-page', pathMatch: 'full', ...canActivate(redirectLoggedInToLandingPage)},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: !environment.production})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
