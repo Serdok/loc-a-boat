@@ -1,0 +1,46 @@
+<div class="columns">
+  <div class="container column is-one-quarter">
+    <form [formGroup]="loginGroup" (ngSubmit)="onSubmit()" class="box">
+      <div class="field">
+        <label class="label">E-Mail</label>
+        <div class="control">
+          <input class="input" type="email" placeholder="john.doe@mail.com" required formControlName="email">
+        </div>
+        <p class="help is-danger" *ngIf="email.errors?.required">E-Mail is required</p>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" type="password" required formControlName="password"
+                 [class.is-danger]="password.invalid && (password.touched || password.dirty)">
+        </div>
+        <p class="help is-danger" *ngIf="password.errors?.required">Password is required</p>
+        <p class="help" *ngIf="email.valid"><a class="link has-text-link" (click)="resetPassword()">Forgot your
+          password?</a></p>
+      </div>
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <button class="button is-rounded is-primary" type="submit" [disabled]="loginGroup.invalid">
+            Log In
+          </button>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <button class="button is-rounded is-inverted" type="button" (click)="googleLogIn()">
+            Log In with Google
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <p>New here? <a class="link has-text-link" routerLink="/signup">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>

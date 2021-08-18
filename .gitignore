@@ -33,6 +33,8 @@ speed-measure-plugin*.json
 
 # misc
 **/.sass-cache
+**/*.css.map
+**/*.css
 /connect.lock
 /coverage
 /libpeerconnection.log
@@ -47,3 +49,4 @@ Thumbs.db
 
 # Firebase
 /.firebase
+**/*.log
