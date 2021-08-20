@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tenant } from '../../interfaces/tenant';
 import { TenantService } from '../../services/tenant.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tenant-detail',
@@ -11,15 +10,16 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./tenant-detail.component.sass']
 })
 export class TenantDetailComponent implements OnInit {
-  tenant$!: Observable<Tenant>;
+  tenant$: Observable<Tenant> = null;
 
-  constructor(private route: ActivatedRoute, private tenantService: TenantService) {
+  constructor(private tenantService: TenantService, private auth: AngularFireAuth) {
   }
 
   ngOnInit(): void {
-    this.tenant$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.tenantService.getTenant(params.get('id')))
-    );
+    this.auth.user.subscribe(user => this.tenant$ = (user ? this.tenantService.getTenant(user.uid) : null));
+    this.tenant$?.subscribe(tenant => {
+      console.log('tenant-detail: fetched new tenant');
+      console.dir(tenant);
+    });
   }
-
 }

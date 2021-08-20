@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from '../environments/environment';
 
 import { FirstPageComponent } from './components/first-page/first-page.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,19 +12,19 @@ const redirectAnonymousToFirstPage = () => redirectUnauthorizedTo(['first-page']
 const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['landing-page']);
 
 const routes: Routes = [
-  {path: 'first-page', component: FirstPageComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  {path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  {path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  {path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
+  { path: 'first-page', component: FirstPageComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  { path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  { path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
   {
     path: 'tenant', loadChildren: () => import('./tenant/tenant.module').then(module => module.TenantModule),
     canLoad: [AuthGuard], ...canActivate(redirectAnonymousToFirstPage)
   },
-  {path: '', redirectTo: '/first-page', pathMatch: 'full'},
+  { path: '', redirectTo: '/first-page', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: !environment.production})],
+  imports: [RouterModule.forRoot(routes, /*{enableTracing: !environment.production}*/)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

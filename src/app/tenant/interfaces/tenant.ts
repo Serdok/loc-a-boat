@@ -1,11 +1,15 @@
 import { Account } from '../../interfaces/account';
 
 export class Tenant extends Account {
-  hasPermit: boolean;
+  hasPermit = false;
 
-  constructor(id: string, email: string, firstname: string, lastname: string,
-              password: string, phone: string, avatar: string, hasPermit: boolean) {
-    super('tenant', id, email, firstname, lastname, password, phone, avatar);
-    this.hasPermit = hasPermit;
+  constructor(obj: Partial<Tenant>) {
+    super(obj);
+    this.hasPermit = obj?.hasPermit;
+    console.log('Tenant constructor() from ', obj, ': ', this);
+  }
+
+  toObject(): object {
+    return { ...this};
   }
 }

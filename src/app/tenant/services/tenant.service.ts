@@ -1,36 +1,62 @@
 import { Injectable } from '@angular/core';
 import { Tenant } from '../interfaces/tenant';
-import { Observable } from 'rxjs';
+import { from, iif, Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { map, tap } from 'rxjs/operators';
+import { AccountService } from '../../services/account.service';
+import { first, switchMap } from 'rxjs/operators';
+import { StorageService } from '../../services/storage.service';
+import { Account } from '../../interfaces/account';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantService {
-  collection: AngularFirestoreCollection<Tenant>;
+  tenants: AngularFirestoreCollection<Tenant>;
 
-  constructor(private auth: AngularFireAuth, private firestore: AngularFirestore) {
-    this.collection = this.firestore.collection<Tenant>('tenants');
+  constructor(private auth: AngularFireAuth, private afs: AngularFirestore, private accountService: AccountService,
+              private storageService: StorageService) {
+    this.tenants = afs.collection<Tenant>('account');
   }
 
-  getTenants(): Observable<Tenant[]> {
-    return this.collection.valueChanges({idField: 'id'});
+  getTenants(): Observable<Tenant[] | undefined> {
+    return this.tenants.valueChanges();
   }
 
-  getTenant(email: string): Observable<Tenant> {
-    return this.firestore.collection<Tenant>('tenants', ref => ref.where('email', '==', email).limit(1))
-      .valueChanges({idField: 'id'})
-      .pipe(
-        tap(console.log),
-        map(tenants => tenants[0]),
-      );
-
+  getTenant(uid: string): Observable<Tenant | undefined> {
+    return this.tenants.doc<Tenant>(uid).valueChanges();
   }
 
-  updateTenant(tenant: Tenant): void {
-    this.collection.doc(tenant.id).update(tenant)
-      .then(console.log);
+  addTenant(tenant: Tenant): Observable<Tenant | undefined> {
+    return this.accountService.addAccount(new Account(tenant)).pipe(
+      switchMap(account => iif(
+        () => !!account,
+        this.upgradeAccount(tenant.uid, tenant.hasPermit),
+        of(undefined)
+      )),
+    );
+  }
+
+  modifyTenant(tenant: Partial<Tenant>): Observable<Tenant | undefined> {
+    return this.accountService.modifyAccount(new Tenant(tenant)).pipe(
+      switchMap(account => iif(
+        () => !!account,
+        this.updateTenant(tenant),
+        of(undefined)
+      )),
+    );
+  }
+
+  private updateTenant(tenant: Partial<Tenant>): Observable<Tenant | undefined> {
+    return from(this.tenants.doc<Tenant>(tenant.uid).update({ ...tenant} as Tenant)).pipe(
+      switchMap(() => this.getTenant(tenant.uid)),
+      first()
+    );
+  }
+
+  upgradeAccount(uid: string, hasPermit?: boolean): Observable<Tenant | undefined> {
+    return this.accountService.getAccount(uid).pipe(
+      switchMap(account => this.modifyTenant({ ...account, hasPermit: hasPermit ?? false})),
+    );
   }
 }

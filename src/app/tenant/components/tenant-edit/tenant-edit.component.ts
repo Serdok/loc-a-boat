@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TenantService } from '../../services/tenant.service';
-import { Observable } from 'rxjs';
+import { defer, Observable } from 'rxjs';
 import { Tenant } from '../../interfaces/tenant';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordMatchValidator } from '../../directives/password-match-validator.directive';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase';
-import User = firebase.User;
+import { fileTypeValidator } from '../../directives/file-type-validator.directive';
+import { StorageService } from '../../../services/storage.service';
+import { first, last, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tenant-edit',
@@ -17,64 +16,69 @@ import User = firebase.User;
 })
 export class TenantEditComponent implements OnInit {
   tenant$: Observable<Tenant> = null;
-  id: string = null;
   group: FormGroup = null;
 
-  constructor(private router: Router, private tenantService: TenantService, private fb: FormBuilder, private auth: AngularFireAuth) {
+  constructor(private router: Router, private tenantService: TenantService, private auth: AngularFireAuth,
+              private storageService: StorageService) {
+    this.group = new FormGroup({
+      uid: new FormControl(null, Validators.nullValidator),
+      email: new FormControl(null, Validators.nullValidator),
+      displayName: new FormControl(null, Validators.nullValidator),
+      phoneNumber: new FormControl(null, Validators.nullValidator),
+      hasPermit: new FormControl(null, Validators.nullValidator),
+      imageInput: new FormControl(null, Validators.nullValidator),
+      image: new FormControl(null, fileTypeValidator(/image\/*/i)),
+      photo: new FormControl(null, Validators.nullValidator),
+    });
   }
 
   ngOnInit(): void {
-    this.tenant$ = this.auth.user.pipe(
-      switchMap((user: User) => this.tenantService.getTenant(user.email)),
-      map((tenant: Tenant) => {
-        // Invalidate current password
-        tenant.password = '';
-        this.id = tenant.id;
-        return tenant;
-      }),
-      tap((tenant: Tenant) => {
-        // Setup form controls
-        this.group = this.fb.group({
-          email: [tenant.email, Validators.nullValidator],
-          firstname: [tenant.firstname, Validators.required],
-          lastname: [tenant.lastname, Validators.required],
-          phone: [tenant.phone, Validators.required],
-          hasPermit: [tenant.hasPermit, Validators.nullValidator],
-          password: [null, Validators.compose([
-            Validators.required,
-            Validators.minLength(4)
-          ])],
-          confirmPassword: [null, Validators.compose([
-            Validators.required,
-            Validators.minLength(4)
-          ])],
-        }, {validators: passwordMatchValidator});
-      })
-    );
+    this.auth.user.subscribe(user => {
+      this.tenant$ = (user ? this.tenantService.getTenant(user.uid) : null);
+      this.tenant$?.subscribe(tenant => {
+        console.log('reset form');
+        this.group.patchValue(tenant);
+        this.group.get('photo').setValue(tenant.photoURL);
+      });
+    });
+  }
+
+  get image(): AbstractControl {
+    return this.group.get('image');
+  }
+
+  get photo(): AbstractControl {
+    return this.group.get('photo');
   }
 
   onSubmit(): void {
-    console.log('saving');
-    this.tenantService.updateTenant({id: this.id, ...this.group.value});
+    const file: File = this.image.value;
+    defer(() => {
+      return file?.name ?
+        this.uploadImage(file).pipe(
+          map(url => new Tenant({ ...this.group.value, photoURL: url})),
+          switchMap(tenant => this.modifyTenant(tenant))
+        ) :
+        this.modifyTenant(new Tenant({ ...this.group.value, photoURL: this.photo.value}));
+    }).pipe(first()).subscribe(tenant => {
+      console.log('updated tenant');
+      console.dir(tenant);
+    });
   }
 
-  get firstname(): AbstractControl {
-    return this.group.get('firstname');
+  onFileChange(event: Event): void {
+    const $element: HTMLInputElement = event.currentTarget as HTMLInputElement;
+    this.image.setValue($element?.files[0] ?? null);
   }
 
-  get lastname(): AbstractControl {
-    return this.group.get('lastname');
+  private uploadImage(file: File): Observable<string | undefined> {
+    return this.storageService.uploadFile(file).pipe(
+      last(),
+      switchMap(percentage => this.storageService.getFile(file.name)),
+    );
   }
 
-  get phone(): AbstractControl {
-    return this.group.get('phone');
-  }
-
-  get password(): AbstractControl {
-    return this.group.get('password');
-  }
-
-  get confirmPassword(): AbstractControl {
-    return this.group.get('confirmPassword');
+  private modifyTenant(tenant: Partial<Tenant>): Observable<Tenant | undefined> {
+    return this.tenantService.modifyTenant(tenant);
   }
 }

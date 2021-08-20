@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { AccountService } from '../../services/account.service';
+import { from, Observable } from 'rxjs';
+import { first, switchMap } from 'rxjs/operators';
+import firebase from 'firebase/app';
+import { Account } from '../../interfaces/account';
+import UserCredential = firebase.auth.UserCredential;
 
 @Component({
   selector: 'app-login',
@@ -12,7 +17,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginGroup: FormGroup = null;
 
-  constructor(private auth: AngularFireAuth, private router: Router) {
+  constructor(private auth: AngularFireAuth, private router: Router, private accountService: AccountService) {
     this.loginGroup = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required])
@@ -31,23 +36,28 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.logIn();
+    this.logIn().pipe(first()).subscribe(account => {
+      console.log('account logged in via email');
+      console.dir(account);
+      from(this.router.navigate(['landing-page'])).pipe(first()).subscribe();
+    });
   }
 
-  logIn(): void {
-    this.auth.signInWithEmailAndPassword(this.email.value, this.encryptPassword(this.password.value))
-      .then(user => console.log(user))
-      .then(() => this.router.navigate(['landing-page']));
+  logIn(): Observable<Account> {
+    return from(this.auth.signInWithEmailAndPassword(this.email.value, this.password.value)).pipe(
+      switchMap(credentials => this.getAccount(credentials)),
+    );
   }
 
   googleLogIn(): void {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(user => console.log(user))
-      .then(() => this.router.navigate(['landing-page']));
-  }
-
-  encryptPassword(password: string): string {
-    return password;
+    from(this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())).pipe(
+      switchMap(credentials => this.getAccount(credentials)),
+      first(),
+    ).subscribe(account => {
+      console.log('account logged in via google');
+      console.dir(account);
+      from(this.router.navigate(['landing-page'])).pipe(first()).subscribe();
+    });
   }
 
   resetPassword(): void {
@@ -56,5 +66,10 @@ export class LoginComponent implements OnInit {
     }
     this.auth.sendPasswordResetEmail(this.email.value)
       .then(() => console.log('sent password reset'));
+  }
+
+  private getAccount(credentials: UserCredential): Observable<Account> {
+    const user = credentials.user;
+    return this.accountService.getAccount(user.uid);
   }
 }

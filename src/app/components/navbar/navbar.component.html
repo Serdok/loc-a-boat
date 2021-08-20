@@ -1,17 +1,17 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <div class="navbar-item">
-      <a class="link" routerLink="/landing-page">Loc-A-Boat</a>
-    </div>
+    <a class="navbar-item" routerLink="/landing-page">
+      <img class="image is-48x48" src="assets/images/logo.png" alt="logo">
+    </a>
 
-    <button role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
-      <span aria-hidden="false"></span>
-      <span aria-hidden="false"></span>
-      <span aria-hidden="false"></span>
+    <button role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" appToggleNavbar="main-navbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
   </div>
 
-  <div class="navbar-menu" id="mainNavbar">
+  <div class="navbar-menu" id="main-navbar">
     <div class="navbar-start">
       <div class="navbar-item">
         <a class="link has-text-link" routerLink="/tenant">Rent a boat</a>
@@ -24,10 +24,21 @@
       </div>
     </div>
 
-    <div class="navbar-end" *ngIf="user$ | async as user; else logIn">
-      <div class="navbar-item">Hello {{ user.displayName }}!</div>
-      <div class="navbar-item">
-        <button class="button is-rounded is-primary" (click)="logOut()">Log Out</button>
+    <div class="navbar-end" *ngIf="account$ | async as account; else logIn">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-link">
+          <figure class="image is-24x24 mr-2 is-inline-block" *ngIf="account.photoURL; else dummyPhoto">
+            <img class="is-rounded" [src]="account.photoURL" alt="avatar">
+          </figure>
+          <p>Hello {{ account.displayName || account.email }}</p>
+        </div>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" routerLink="/tenant/detail">View your profile</a>
+          <a class="navbar-item" routerLink="/tenant/edit">Edit your profile</a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" (click)="logOut()">Log out</a>
+        </div>
       </div>
     </div>
   </div>
@@ -42,4 +53,8 @@
       </div>
     </div>
   </div>
+</ng-template>
+
+<ng-template #dummyPhoto>
+  <span class="icon is-large"><i class="fas fa-user"></i></span>
 </ng-template>

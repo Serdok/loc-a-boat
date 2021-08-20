@@ -4,8 +4,8 @@ import { TenantDetailComponent } from './components/tenant-detail/tenant-detail.
 import { TenantEditComponent } from './components/tenant-edit/tenant-edit.component';
 
 const routes: Routes = [
-  {path: 'detail', component: TenantDetailComponent,},
-  {path: 'edit', component: TenantEditComponent,},
+  { path: 'detail', component: TenantDetailComponent, },
+  { path: 'edit', component: TenantEditComponent, },
 ];
 
 @NgModule({

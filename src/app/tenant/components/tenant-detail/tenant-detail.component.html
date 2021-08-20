@@ -1,11 +1,24 @@
 <ng-container *ngIf="tenant$ | async as tenant">
-  <div class="container">
-    <h2 class="title">Your profile</h2>
-    <h3 class="subtitle">View your profile</h3>
-
-    <p><strong>E-Mail:</strong> {{tenant.email}}</p>
-    <p><strong>Name:</strong> {{tenant.firstname | titlecase}} {{tenant.lastname | titlecase}}</p>
-    <p><strong>Phone number:</strong> {{tenant.phone}}</p>
-    <p *ngIf="tenant.hasPermit">You have a boat permit</p>
+  <div class="columns">
+    <div class="container column is-two-fifths mt-2">
+      <article class="media box">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img [src]="tenant.photoURL" alt="image">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{ tenant.displayName }}</strong> <small class="ml-1">({{ tenant.email }})</small>
+              <br>
+              Phone number: {{ tenant.phoneNumber || 'Not set' }}
+              <br>
+              Do you have a boat permit? {{ tenant.hasPermit ? 'Yes' : 'No' }}
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </ng-container>

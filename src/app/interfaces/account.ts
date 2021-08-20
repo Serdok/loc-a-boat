@@ -1,22 +1,20 @@
 export class Account {
-  readonly type: 'owner' | 'tenant';
-  readonly id: string;
-  readonly email: string;
-  firstname: string;
-  lastname: string;
-  password: string;
-  phone: string;
-  avatar: string;
+  readonly uid: string = null;
+  readonly email: string = null;
+  displayName: string = null;
+  phoneNumber: string = null;
+  photoURL: string = null;
 
-  constructor(type: 'owner' | 'tenant', id: string, email: string, firstname: string,
-              lastname: string, password: string, phone: string, avatar: string) {
-    this.type = type;
-    this.id = id;
-    this.email = email;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.password = password;
-    this.phone = phone;
-    this.avatar = avatar;
+  constructor(obj: Partial<Account>) {
+    this.uid = obj?.uid;
+    this.email = obj?.email;
+    this.displayName = obj?.displayName;
+    this.phoneNumber = obj?.phoneNumber;
+    this.photoURL = obj?.photoURL;
+    console.log('Account constructor() from ', obj, ': ', this);
+  }
+
+  toObject(): object {
+    return { ...this};
   }
 }
