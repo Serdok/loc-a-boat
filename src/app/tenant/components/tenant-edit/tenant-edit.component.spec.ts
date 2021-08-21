@@ -1,18 +1,18 @@
-import { NavbarComponent } from './navbar.component';
+import { TenantEditComponent } from './tenant-edit.component';
 
-describe('NavbarComponent', () => {
-  // let component: NavbarComponent;
-  // let fixture: ComponentFixture<NavbarComponent>;
+describe('TenantEditComponent', () => {
+  // let component: TenantEditComponent;
+  // let fixture: ComponentFixture<TenantEditComponent>;
   //
   // beforeEach(async () => {
   //   await TestBed.configureTestingModule({
-  //     declarations: [NavbarComponent]
+  //     declarations: [TenantEditComponent]
   //   })
   //     .compileComponents();
   // });
   //
   // beforeEach(() => {
-  //   fixture = TestBed.createComponent(NavbarComponent);
+  //   fixture = TestBed.createComponent(TenantEditComponent);
   //   component = fixture.componentInstance;
   //   fixture.detectChanges();
   // });

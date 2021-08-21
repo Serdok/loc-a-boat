@@ -1,18 +1,18 @@
-import { NavbarComponent } from './navbar.component';
+import { TenantDetailComponent } from './tenant-detail.component';
 
-describe('NavbarComponent', () => {
-  // let component: NavbarComponent;
-  // let fixture: ComponentFixture<NavbarComponent>;
+describe('TenantDetailComponent', () => {
+  // let component: TenantDetailComponent;
+  // let fixture: ComponentFixture<TenantDetailComponent>;
   //
   // beforeEach(async () => {
   //   await TestBed.configureTestingModule({
-  //     declarations: [NavbarComponent]
+  //     declarations: [TenantDetailComponent]
   //   })
   //     .compileComponents();
   // });
   //
   // beforeEach(() => {
-  //   fixture = TestBed.createComponent(NavbarComponent);
+  //   fixture = TestBed.createComponent(TenantDetailComponent);
   //   component = fixture.componentInstance;
   //   fixture.detectChanges();
   // });

@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  // Your 'match' blocks with their corresponding 'allow' statements and
+  // optional 'function' declarations are contained here
+  match /databases/{database}/documents {
+    match /account/{uid}/{document=**} {
+      allow read, create, update, delete: if request.auth.uid == uid;
+    }
+  }
+}
