@@ -14,21 +14,23 @@ export class StorageService {
   }
 
   uploadFileFromURL(url: string): Observable<number> {
-    const name = url.split('/').pop();
-    const ref = this.afs.ref(`${this.base}/${name}`);
-    return this.http.get(url, { responseType: 'blob'})
-      .pipe(
-        map((blob: Blob) => ref.put(blob, { contentType: blob.type})),
-        switchMap(task => task.percentageChanges()),
-      );
+    const pathname = new URL(url).pathname.split('/').pop();
+    const filename = this.sanitizeFilename(pathname);
+    return this.http.get(url, {responseType: 'blob'}).pipe(
+      map(blob => this.afs.upload(`${this.base}/${filename}`, blob)),
+      switchMap(task => task.percentageChanges())
+    );
   }
 
   uploadFile(file: File): Observable<number> {
-    const ref = this.afs.ref(`${this.base}/${file.name}`);
-    return ref.put(file, { contentType: file.type}).percentageChanges();
+    return this.afs.upload(`${this.base}/${file.name}`, file).percentageChanges();
   }
 
   getFile(name: string): Observable<string | undefined> {
     return this.afs.ref(`${this.base}/${name}`).getDownloadURL();
+  }
+
+  sanitizeFilename(filename: string): string {
+    return filename.replace(/[^a-z0-9_-]/gi, '_').replace(/_{2,}/g, '_').toLowerCase();
   }
 }
