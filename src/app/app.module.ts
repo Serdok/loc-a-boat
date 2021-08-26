@@ -8,7 +8,6 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { OwnerComponent } from './components/owner/owner.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MapComponent } from './map/map.component';
@@ -22,6 +21,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,8 @@ import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
     LoginComponent,
     LandingPageComponent,
     NavbarComponent,
-    ToggleNavbarDirective
-    OwnerComponent
+    ToggleNavbarDirective,
+    OwnerComponent,
     InscriptionComponent,
     MapComponent,
   ],
@@ -46,11 +46,12 @@ import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TenantModule
+    TenantModule,
+    LeafletModule,
   ],
   providers: [
-    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 9099] : undefined, },
-    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined, },
+    {provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 9099] : undefined,},
+    {provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined,},
   ],
   bootstrap: [AppComponent]
 })
