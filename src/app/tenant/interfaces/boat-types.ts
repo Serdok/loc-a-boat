@@ -1,0 +1,22 @@
+export enum BoatType {
+  Fishing = 'Fishing Boat',
+  Dinghy = 'Dinghy Boat',
+  Deck = 'Deck Boat Boat',
+  Bowrider = 'Bowrider Boat',
+  Catamaran = 'Catamaran Boat',
+  CuddyCabins = 'Cuddy Cabins Boat',
+  CenterConsole = 'Center Console Boat',
+  Houseboat = 'Houseboat Boat',
+  Trawler = 'Trawler Boat',
+  CabinCruiser = 'Cabin Cruiser Boat',
+  Game = 'Game Boat',
+  MotorYacht = 'Motor Yacht Boat',
+  PersonalWatercraft = 'Personal Watercraft (pwc) Boat',
+  Runabout = 'Runabout Boat',
+  Jet = 'Jet Boat',
+  Wakeboard = 'Wakeboard/Ski Boat',
+  Banana = 'Banana Boat',
+  Lifeboat = 'Lifeboat Boat',
+  Pontoon = 'Pontoon Boat',
+  SedabBridge = 'Sedan Bridge Boat'
+}

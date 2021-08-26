@@ -1,0 +1,31 @@
+<ng-container *ngIf="boats$ | async as boats">
+  <div class="container columns">
+    <div class="column is-3" *ngFor="let boat of boats">
+      <div class="card">
+        <div class="card-image">
+          <figure>
+            <p class="image is-4by3">
+              <img [src]="boat.image" alt="image">
+            </p>
+          </figure>
+        </div>
+        <div class="card-header">
+          <p class="card-header-title">{{ boat.name }}</p>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <p>{{ boat.type }}</p>
+            <p>{{ boat.description }}</p>
+            <p>${{ boat.ratePerDay }} per day</p>
+            <p>{{ boat.seats }} seats available</p>
+            <p>Current position: {{ boat.currentLongitude }}, {{ boat.currentLatitude }}</p>
+            <p *ngIf="boat.needsLicence">Licence required</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <p>Contact owner: {{ boat.owner }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
