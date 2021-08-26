@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OwnerComponent } from './components/owner/owner.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MapComponent } from './map/map.component';
 
 import { TenantModule } from './tenant/tenant.module';
 import { FirstPageComponent } from './components/first-page/first-page.component';
@@ -31,6 +33,8 @@ import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
     NavbarComponent,
     ToggleNavbarDirective
     OwnerComponent
+    InscriptionComponent,
+    MapComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
