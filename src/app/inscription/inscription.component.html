@@ -1,0 +1,95 @@
+<style>
+
+#map { height: 180px; }
+</style>
+<script>var mymap = L.map('mapid').setView([51.505, -0.09], 13);</script>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+        </div></div>
+    <div class="row justify-content-center">
+      <div class="col-sm-4">
+                <div class="text-center">	
+                    <form name="frm" action="./enr2.php" method="post" > <!-- a  modif pour la bdd -->
+                        <h2> S'enregistrer </h2>
+                        Souhaitez-vous louer un bateau ou mettre le votre en location ? <br> 
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" onchange="myFunction()" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="option1">
+                        <label class="form-check-label" for="inlineRadio1"   >Je loue un bateau</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input"  onchange="myFunction2()" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2" > Je mets mon bateau en location </label>
+                        </div>
+                        <br /><br />
+                        <p>Quelques informations sur vous</p>
+                        <table class="center">
+                            <tr>
+                                <th>Nom</th><th>Prenom</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="nom1" required></td><td><input type="text" name="prenom1"required></td>
+                            </tr>
+                            <tr> <td>Date de naissance</td> <td> Sexe (M/F)  </td> </tr>
+                            <tr><td><input type="date" name="date1"required></td>
+                                <td>
+                                    <input type="radio" name="sexe1" value="M" required>
+                                    <input type="radio" name="sexe1" value="F" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Adresse mail   <br/>
+                                    <input type="email" name="mail" required="entrez votre mail">
+                                </td>
+                                <td>
+                                    Numéro de téléphone <br/> 
+                                    <input type="number" name="tel1" required>
+                                </td>
+                                
+
+                            </tr> 
+                            <tr> 
+                                <td colspan="2" >
+                                    Adresse <br/>	
+                                    <div id="params">
+                                        <input type="text" name="adresse" id="recherche_adresse"  />
+                                        <input type="button" value="Vérifier l'adresse" class="btn btn-primary btn-sm" onclick="recherche()"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td colspan="2" >
+                                    
+                                        Géocode Lat/Lng<br/>  
+                                        <input  type="text" id="geo"    name="geo" /> 
+                                        <input  type="text" id="geo2"    name="geo2" />
+                                        <br/>
+                                        <!--
+                                        Ville <br/> 
+                                        <input type="text" name="ville" required="entrez votre ville"> <br><br>
+                                    -->
+                                    
+                                    <input class="btn btn-success" type="submit" value="valider" />
+                                </td>
+                            </tr> 
+                        </table>
+
+                                 
+                                
+                    </form>
+                </div>
+          
+            </div>   
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-sm-12">
+                <div id="map"></div>
+          </div> 
+            
+        </div>
+    </div>

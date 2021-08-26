@@ -1,3 +1,4 @@
+  selector: 'app-root',
 import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
