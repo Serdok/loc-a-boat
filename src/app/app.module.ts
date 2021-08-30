@@ -18,6 +18,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
+import { AvisComponent } from './components/avis/avis.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
     LoginComponent,
     LandingPageComponent,
     NavbarComponent,
-    ToggleNavbarDirective
+    ToggleNavbarDirective,
+    AvisComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
