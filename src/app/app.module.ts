@@ -22,6 +22,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { PopupService } from './popup.service';
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   providers: [
     {provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 9099] : undefined,},
     {provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined,},
+    PopupService
   ],
   bootstrap: [AppComponent]
 })
