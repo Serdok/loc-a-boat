@@ -1,0 +1,33 @@
+<div class="columns">
+    <div class="container column is-one-quarter">
+      <form [formGroup]="avisGroup" (ngSubmit)="onSubmit()" class="box">
+        <div class="row">
+          <div class="col-sm-12">
+            <label class="label">Rate</label>
+              <ul class="list-inline rating-list" 
+                  *ngFor="let star of stars" style="display: inline-block" >
+                    <li (click)="countStar(star)"
+                        [ngClass]="{'selected': (star <= selectedValue)}">
+                      <i class="fa fa-star"></i>
+                    </li> 
+              </ul>
+          </div>
+        </div>
+      
+        <div class="field">
+          <label class="label">Comment</label>
+          <div class="control">
+            <textarea class="textarea" formControlName="commentaire"></textarea>
+          </div>
+        </div>
+        <div class="field is-grouped is-grouped-centered">
+          <div class="control">
+            <button class="button is-rounded is-primary" type="submit" [class.disabled] = "avisGroup.invalid" >
+              Submit
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+</div>

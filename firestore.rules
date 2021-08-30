@@ -6,5 +6,8 @@ service cloud.firestore {
     match /account/{uid}/{document=**} {
       allow read, create, update, delete: if request.auth.uid == uid;
     }
+    match /avis/{document=**}{
+      allow read, create, update, delete;
+    }
   }
 }

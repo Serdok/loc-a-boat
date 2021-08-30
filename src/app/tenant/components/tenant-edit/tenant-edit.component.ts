@@ -63,6 +63,7 @@ export class TenantEditComponent implements OnInit {
     }).pipe(first()).subscribe(tenant => {
       console.log('updated tenant');
       console.dir(tenant);
+      this.router.navigate(['landing-page'])
     });
   }
 

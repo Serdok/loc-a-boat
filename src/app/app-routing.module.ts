@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FirstPageComponent } from './components/first-page/first-page.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
+import { AvisComponent } from './components/avis/avis.component';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'first-page', component: FirstPageComponent, ...canActivate(redirectLoggedInToLandingPage)},
   { path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
   { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  { path: 'avis', component: AvisComponent, ...canActivate(redirectLoggedInToLandingPage)},
   { path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
   {
     path: 'tenant', loadChildren: () => import('./tenant/tenant.module').then(module => module.TenantModule),
