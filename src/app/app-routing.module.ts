@@ -14,11 +14,11 @@ const redirectAnonymousToFirstPage = () => redirectUnauthorizedTo(['first-page']
 const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['landing-page']);
 
 const routes: Routes = [
-  { path: 'first-page', component: FirstPageComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  { path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  { path: 'avis', component: AvisComponent, ...canActivate(redirectLoggedInToLandingPage)},
-  { path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
+  {path: 'first-page', component: FirstPageComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'signup', component: SignupComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'avis', component: AvisComponent, ...canActivate(redirectLoggedInToLandingPage)},
+  {path: 'landing-page', component: LandingPageComponent, ...canActivate(redirectAnonymousToFirstPage)},
   {
     path: 'tenant', loadChildren: () => import('./tenant/tenant.module').then(module => module.TenantModule),
     canLoad: [AuthGuard], ...canActivate(redirectAnonymousToFirstPage)
