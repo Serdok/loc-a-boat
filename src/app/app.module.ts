@@ -8,6 +8,9 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OwnerComponent } from './components/owner/owner.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MapComponent } from './map/map.component';
 
 import { TenantModule } from './tenant/tenant.module';
 import { FirstPageComponent } from './components/first-page/first-page.component';
@@ -18,6 +21,9 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToggleNavbarDirective } from './directives/toggle-navbar.directive';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+
 import { AvisComponent } from './components/avis/avis.component';
 
 @NgModule({
@@ -28,6 +34,10 @@ import { AvisComponent } from './components/avis/avis.component';
     LoginComponent,
     LandingPageComponent,
     NavbarComponent,
+    ToggleNavbarDirective,
+    OwnerComponent,
+    InscriptionComponent,
+    MapComponent,
     ToggleNavbarDirective,
     AvisComponent
   ],
@@ -41,11 +51,12 @@ import { AvisComponent } from './components/avis/avis.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TenantModule
+    TenantModule,
+    LeafletModule,
   ],
   providers: [
-    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 9099] : undefined, },
-    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined, },
+    {provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 9099] : undefined,},
+    {provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined,}
   ],
   bootstrap: [AppComponent]
 })

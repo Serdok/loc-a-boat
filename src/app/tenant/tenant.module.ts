@@ -7,6 +7,7 @@ import { TenantEditComponent } from './components/tenant-edit/tenant-edit.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GetFileNameDirective } from './directives/get-file-name.directive';
 import { FileTypeValidatorDirective } from './directives/file-type-validator.directive';
+import { DisplayBoatsComponent } from './components/display-boats/display-boats.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FileTypeValidatorDirective } from './directives/file-type-validator.dir
     TenantEditComponent,
     GetFileNameDirective,
     FileTypeValidatorDirective,
+    DisplayBoatsComponent,
   ],
   imports: [
     CommonModule,
