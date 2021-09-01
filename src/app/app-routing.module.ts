@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AuthGuard } from './guards/auth.guard';
+import { MapComponent } from './map/map.component';
 
 const redirectAnonymousToFirstPage = () => redirectUnauthorizedTo(['first-page']);
 const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['landing-page']);
@@ -20,6 +21,7 @@ const routes: Routes = [
     path: 'tenant', loadChildren: () => import('./tenant/tenant.module').then(module => module.TenantModule),
     canLoad: [AuthGuard], ...canActivate(redirectAnonymousToFirstPage)
   },
+  {path: 'stations', component: MapComponent, ...canActivate(redirectAnonymousToFirstPage)},
   {path: '', redirectTo: '/first-page', pathMatch: 'full'},
 ];
 
